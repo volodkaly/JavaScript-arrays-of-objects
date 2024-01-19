@@ -8,25 +8,21 @@
 <body>
     <style>
         #clear__first{
-            font-size: 2svh;
-        }
-        #clear__second{
-            font-size: 2svh;
+            font-size: 12px;
         }
         #submit_one{
            margin-top:  1svh;
+           margin-bottom:  1svh;
         }
         body {
             font-size: 12px;
-            font-size: 2svh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             flex-wrap: nowrap;
         }
         input {
-            min-height: 3svh;
-            font-size: 2svh;
+            font-size: 12px;
             display: flex;
             flex-wrap: nowrap;
         }
@@ -36,6 +32,7 @@
 
         #submit2{
             margin-top: 1svh;
+            margin-bottom: 1svh;
         }
     </style>
    
@@ -97,8 +94,8 @@
         
         let arr = [];
         let arr2 = [];
-
-
+        let isChanged = false;
+   
         
                 document.getElementById("submit_one").addEventListener("click", function(event) {
             event.preventDefault(); // Prevent the form from submitting via HTTP request
@@ -126,12 +123,17 @@ let object2 = {name: name2, age: age2, salary: salary2};
 arr.push(object);
 arr2.push(object2);
 
+
 document.getElementById("output").innerHTML = '';
 document.getElementById("output2").innerHTML = '';
             
             document.getElementById("output").append(JSON.stringify(arr));
             // Display the result in the output div
              document.getElementById("output2").append(JSON.stringify(arr2));
+             isChanged = true;
+             if (isChanged === true){
+            document.getElementById("submit2").disabled = false;
+        }
         });
 
 
@@ -172,8 +174,13 @@ document.getElementById("output2").innerHTML = '';
             else {
                 document.getElementById("output3").innerHTML  = JSON.stringify(common);
             }
-    
+            isChanged = false;
+            if (isChanged === false){
+            document.getElementById("submit2").disabled = true;
+        }
 });
+
+
 
     </script>
 </body>
